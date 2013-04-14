@@ -13,14 +13,14 @@
 
 
 @interface FlipsideViewController : UIViewController {
-    id <FlipsideViewControllerDelegate> delegate;
+    id <FlipsideViewControllerDelegate> __weak delegate;
     RoundedUITableView *tableView;
     NSMutableArray *cities;
 }
 
 
-@property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
-@property (nonatomic, retain) IBOutlet RoundedUITableView *tableView;
+@property (nonatomic, weak) id <FlipsideViewControllerDelegate> delegate;
+@property (nonatomic, strong) IBOutlet RoundedUITableView *tableView;
 
 
 - (IBAction)done;

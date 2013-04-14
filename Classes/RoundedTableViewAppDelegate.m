@@ -11,27 +11,19 @@
 
 @implementation RoundedTableViewAppDelegate
 
-
 @synthesize window;
 @synthesize mainViewController;
 
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
-    
-	MainViewController *aController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
-	self.mainViewController = aController;
-	[aController release];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	self.mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
 	
-    mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-	[window addSubview:[mainViewController view]];
-    [window makeKeyAndVisible];
-}
-
-
-- (void)dealloc {
-    [mainViewController release];
-    [window release];
-    [super dealloc];
+    //mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+	//[window addSubview:[mainViewController view]];
+    self.window.rootViewController = self.mainViewController;
+    [self.window makeKeyAndVisible];
+    
+    return YES;
 }
 
 @end
