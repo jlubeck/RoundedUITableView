@@ -44,9 +44,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end
@@ -116,10 +113,6 @@
 }
 
 
-- (void)dealloc {
-    [mask release];
-    [super dealloc];
-}
 
 
 @end

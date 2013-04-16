@@ -23,10 +23,11 @@
 
 /*
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad {
- [super viewDidLoad];
- }
- */
+- (void)viewDidLoad {
+     [super viewDidLoad];
+     NSLog(@"viewDidLoad");
+}
+*/
 
 
 /*
@@ -39,20 +40,18 @@
 
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
-    
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+	//[self dismissModalViewControllerAnimated:YES];
 }
 
 
-- (IBAction)showInfo {    
-	
+- (IBAction)showInfo:(id)sender {
 	FlipsideViewController *controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
 	controller.delegate = self;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];
-	
-	[controller release];
+	//[self presentModalViewController:controller animated:YES];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 
@@ -78,9 +77,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

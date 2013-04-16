@@ -9,8 +9,9 @@
 #import "FlipsideViewController.h"
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
+    IBOutlet UIButton *infoButton;
 }
 
-- (IBAction)showInfo;
+- (IBAction)showInfo:(id)sender;
 
 @end

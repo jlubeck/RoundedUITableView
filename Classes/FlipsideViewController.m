@@ -28,7 +28,6 @@
 
 
 - (void)viewDidUnload {
-    [cities release];
     cities = nil;
 }
 
@@ -38,11 +37,6 @@
 }
 
 
-- (void)dealloc {
-    self.tableView = nil;
-    
-    [super dealloc];
-}
 
 
 #pragma mark Table view methods
@@ -54,7 +48,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [cities count];
+    return cities.count;
 }
 
 
@@ -63,11 +57,11 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if(indexPath.row < [cities count]) {
-        cell.textLabel.text = [cities objectAtIndex:indexPath.row];
+    if(indexPath.row < cities.count) {
+        cell.textLabel.text = cities[indexPath.row];
     }
     
     return cell;
@@ -77,13 +71,13 @@
 - (void)tableView:(UITableView *)aTableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [cities removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
     }
 }
 
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    NSString *tmp = [cities objectAtIndex:fromIndexPath.row];
+    NSString *tmp = cities[fromIndexPath.row];
     [cities removeObjectAtIndex:fromIndexPath.row];
     [cities insertObject:tmp atIndex:toIndexPath.row];
 }
